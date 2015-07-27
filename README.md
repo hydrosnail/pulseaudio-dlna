@@ -1,193 +1,35 @@
 # About #
 
-This is _pulseaudio-dlna_. A small DLNA server which brings DLNA / UPNP
-support to PulseAudio and Linux.
+This is pulseaudio-dlna-portable, which is a fork of _pulseaudio-dlna_. I recommend that anyone that is interested in using pulseaudio-dlna use the official version, which is likely to be better maintained and more up to date.  The purpose of this fork is to maintain a simple, primarily portable version of pulseaudio-dlna that is easy to install on Arch Linux, and possibly other distros.
 
-It can stream your current PulseAudio playback to different UPNP devices
-(UPNP Media Renderers) in your network.
-It's main goals are: easy to use, no configuration hassle, no
-big dependencies.
-
-![Image of pulseaudio-dlna](https://github.com/masmu/pulseaudio-dlna/blob/master/samples/images/pavucontrol-sample.png)
-
+Why a fork?  Because the original application is being developed to include better system integration, and support for running as a SystemD daemon.  These features, while beneficial for most, are not necessary if the app is to remain portable.  
 
 ## License ##
 
-    pulseaudio-dlna is licensed under GPLv3.
+    pulseaudio-dlna-portable is licensed under GPLv3.
 
-    pulseaudio-dlna is free software: you can redistribute it and/or modify
+    pulseaudio-dlna-portable is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    pulseaudio-dlna is distributed in the hope that it will be useful,
+    pulseaudio-dlna-portable is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU General Public License for more details.
 
     You should have received a copy of the GNU General Public License
-    along with pulseaudio-dlna.  If not, see <http://www.gnu.org/licenses/>.
+    along with pulseaudio-dlna-portable.  If not, see <http://www.gnu.org/licenses/>.
 
-## Donation ##
-![Image of pulseaudio-dlna](http://maemo.lancode.de/.webdir/donate.gif)
-If I could help you or if you like my work, you can buy me a [coffee, a beer or pizza](https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=totalexceed%40lancode%2ede&item_name=Donation&no_shipping=2&no_note=1&tax=0&currency_code=EUR&bn=PP%2dDonationsBF&charset=UTF%2d8).
+### Portable Installation in Arch Linux ###
 
-## Changelog ##
-
- * __0.3.5__ - (_2015-04-09_)
-    - Fixed a bug where Sonos description XML could not get parsed correctly
-
- * __0.3.4__ - (_2015-03-22_)
-    - Fixed Makefile for launchpad
-
- * __0.3.3__ - (_2015-03-22_)
-    - Added the ```--filter-device``` option
-    - Send 2 SSDP packets by default for better UPNP device discovery
-    - Added virtualenv for local installation
-
- * __0.3.2__ - (_2015-03-14_)
-    - Added the Opus Encoder (new dependency: `opus-tools`) (thanks to [MobiusHorizons](https://github.com/MobiusHorizons))
-    - Fixed a bug where an empty UPNP device name made the application crash
-    - Added a missing dependency (`python-gobject`)
-
- * __0.3.1__ - (_2015-02-13_)
-    - Fixed a bug so that AVTransports other than 1 can be used (thanks to [martin-insulander-info](https://github.com/martin-insulander-info))
-
- * __0.3.0__ - (_2015-02-01_)
-    - Added debian packaging
-    - Added proper signal handlers (new dependency: `python-setproctitle`)
-    - Fixed a bug where binding to an already used port made the application crash
-    - HTTP charset encoding is now specified correctly
-
- * __0.2.4__ - (_2015-01-25_)
-    - Stream changes are now handled correctly (thanks to [Takkat-Nebuk](https://github.com/Takkat-Nebuk))
-
- * __0.2.3__ - (_2015-01-21_)
-    - Fixed a timing bug where the pulseaudio module was not loaded fast enough (thanks to [Takkat-Nebuk](https://github.com/Takkat-Nebuk))
-
- * __0.2.2__ - (_2015-01-18_)
-    - Fixed encoding issues
-    - Try to load the DBus module if it is not loaded before (thanks to [Takkat-Nebuk](https://github.com/Takkat-Nebuk))
-
- * __0.2.1__ - (_2015-01-11_)
-    - TTL changed to 10 and timeout to 5 for UDP broadcasting
-    - Added the ```--renderer-urls``` option to manually add UPNP devices via their control url
-    - Added the ```--debug``` flag
-    - The host ip address is now discovered automatically, no need to specifiy ```--host``` anymore
-
-## Installation via PPA ##
-
-Ubuntu users can install _pulseaudio-dlna_ via the following [repository](https://launchpad.net/~qos/+archive/ubuntu/pulseaudio-dlna).
-
-    sudo apt-add-repository ppa:qos/pulseaudio-dlna
-    sudo apt-get update
-    sudo apt-get install pulseaudio-dlna
-
-### Starting ###
-
-After that you can start _pulseaudio-dlna_ via:
-
-    pulseaudio-dlna
-
-Head over the the _using section_ for further instructions.
-
-## Installation for other distributions ##
-
-Some community members are providing packages for others distributions.
-_Keep in mind that since i am not using those, i can hardly support them!_
-
-- Arch Linux
-    [https://aur.archlinux.org/packages/pulseaudio-dlna/](https://aur.archlinux.org/packages/pulseaudio-dlna/)
-- openSUSE (_.rpm_)
-    [http://packman.links2linux.de/package/pulseaudio-dlna](http://packman.links2linux.de/package/pulseaudio-dlna)
-
-
-## Installation via git ##
-
-Other linux users can clone this git repository,
-make sure you have all the dependencies installed and the PulseAudio DBus module
-is loaded.
-
-### Basic requirements ###
-
-These are the requirements _pulseaudio-dlna_ acutally needs to run. These dependencies
-will get installed if you install it via the PPA.
-
-- python2.7
-- python-pip
-- python-dbus
-- python-beautifulsoup
-- python-docopt
-- python-requests
-- python-setproctitle
-- python-gobject
-- vorbis-tools
-- sox
-- lame
-- flac
-- opus-tools
-
-You can install all the dependencies in Ubuntu via:
-
-    sudo apt-get install python2.7 python-pip python-dbus python-beautifulsoup python-docopt python-requests python-setproctitle python-gobject vorbis-tools sox lame flac opus-tools
-
-### PulseAudio DBus module ###
-
-Since version _0.2.2_ the DBus module should be loaded automatically, if it was
-not loaded before.
-It that does not work, you can load the DBus module in Ubuntu via the following
-command. Note that you 
-have to do this every time you restart PulseAudio (or your computer).
-
-    pacmd load-module module-dbus-protocol
-
-Or to make changes persistant edit the file `/etc/pulse/default.pa` with your
-favorite editor and append the following line: 
-
-    load-module module-dbus-protocol
-
-### Install it local ###
-
-The recommend method of using _pulseaudio-dlna_ is to install it local to a
-python _virtualenv_. In that way you will keep your system clean. If you don't like
-it anymore, just delete the folder.
-For that method you need some additional dependencies.
-
-#### virtualenv requirements ####
-
-- python-virtualenv
-- python-dev
-
-You can install all the dependencies in Ubuntu via:
-
-    sudo apt-get install python-virtualenv python-dev
-
-#### Installing & starting ####
-
-Change to the _project root folder_ and start the installation via:
-
-    make venv
-
-After that you can start _pulseaudio-dlna_ via:
-
-    bin/pulseaudio-dlna
-
-### Install it to your system ###
-
-Since some people like it more to install software globally, you can do that too.
-In many software projects this is the default installation method.
-
-#### Installing & starting ####
-
-Change to the _root folder_ and start the installation via:
-
-    make install
-
-After that you can start _pulseaudio-dlna_ via:
-
-    pulseaudio-dlna
+Coming
 
 ### Using ###
+
+Start pulseaudio-dlna-portable from the local installation via:
+
+    bin/pulseaudio-dlna
 
 _pulseaudio-dlna_ should detect the ip address your computer is reachable within
 your local area network. If the detected ip address is not correct or there
@@ -196,19 +38,12 @@ option (```--host <your-ip>```)
 
 Right after startup it should start searching for UPNP devices in your LAN and
 add new PulseAudio sinks.
+
 After 5 seconds the progress is complete and you can select your UPNP renderers
 from the default audio control.
 
-In case you just want to stream single audio streams to your UPNP devices you
-can do this via `pavucontrol`.
-
-You can install `pavucontrol` in Ubuntu via the following command:
-
-    sudo apt-get install pavucontrol
-
-Note that _pulseaudio-dlna_ has to run all the time while you are listening to
-your music. If you stop _pulseaudio-dlna_ it will cleanly remove the created
-UPNP devices from PulseAudio and your UPNP devices will stop playing.
+Note that pulseaudio-dlna-portable has to run all the time while you are listening to
+your music.
 
 Also note that _pulseaudio-dlna_ won't search for additional UPNP devices after
 startup. It just does this once and (for me) there is no need in continuously
@@ -274,9 +109,9 @@ _pulseaudio-dlna_ was successfully tested on the follwing devices / applications
 - [Pi MusicBox](http://www.woutervanwijk.nl/pimusicbox/)
 - [Raumfeld Speaker M](http://raumfeld.com)
 - Pioneer VSX-824 (AV Receiver)
+- Pioneer A4 XW-SMA4-K (Wireless Speaker System)
 - [ROCKI] (http://www.myrocki.com/)
 - Sony STR-DN1050 (AV Receiver)
-- Pure Jongo S3
 
 ## Supported encoders ##
 
