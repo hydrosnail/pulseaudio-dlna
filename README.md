@@ -1,8 +1,8 @@
 # About #
 
-This is pulseaudio-dlna-portable, which is a fork of _pulseaudio-dlna_. I recommend that anyone that is interested in using pulseaudio-dlna use the official version, which is likely to be better maintained and more up to date.  The purpose of this fork is to maintain a simple, primarily portable version of pulseaudio-dlna that is easy to install on Arch Linux, and possibly other distros.
+This is pulseaudio-dlna-portable, which is a fork of _pulseaudio-dlna_. I recommend that anyone that is interested in using pulseaudio-dlna use the official version, which is likely to be better maintained and more up to date.  The purpose of this fork is to maintain a simple, primarily portable version of pulseaudio-dlna that is easy to install on Arch Linux, and possibly other distros (although I won't test it on those).
 
-Why a fork?  Because the original application is being developed to include better system integration, and support for running as a SystemD daemon.  These features, while beneficial for most, are not necessary if the app is to remain portable.  
+Why a fork?  Because the original application is being developed to include better system integration, and support for running as a SystemD daemon.  These features, while beneficial for most, are not necessary if the app is to be installed in a portable way.  
 
 ## License ##
 
@@ -23,7 +23,28 @@ Why a fork?  Because the original application is being developed to include bett
 
 ### Portable Installation in Arch Linux ###
 
-Coming
+Install the following dependencies from the official repositories.  You will likely already
+have some of these installed.
+
+python2-beatifulsoup3 
+python2-dbus 
+python2-docopt 
+python2-virtualenv 
+python2-gobject2
+
+Download a zip file of the current release of pulseaudio-dlna-local by clicking on 
+the download link on the right side of the main page (probably the page you're looking
+at right now).
+
+Unzip the file and move the contents to wherever you want them to stay.
+
+Open a terminal and CD into that folder.  As a regular user, type the
+command 
+    
+    make venv
+
+You will now have a portable installation of pulseaudio-dlna-portable.
+If you want to uninstall it, just get rid of the folder.
 
 ### Using ###
 
