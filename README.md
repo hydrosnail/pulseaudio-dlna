@@ -26,11 +26,11 @@ Why a fork?  Because the original application is being developed to include bett
 Install the following dependencies from the official repositories.  You will likely already
 have some of these installed.
 
-python2-beatifulsoup3 
-python2-dbus 
-python2-docopt 
-python2-virtualenv 
-python2-gobject2
+    python2-beatifulsoup3 
+    python2-dbus 
+    python2-docopt 
+    python2-virtualenv 
+    python2-gobject2
 
 Download a zip file of the current release of pulseaudio-dlna-local by clicking on 
 the download link on the right side of the main page (probably the page you're looking
@@ -70,6 +70,11 @@ Also note that _pulseaudio-dlna_ won't search for additional UPNP devices after
 startup. It just does this once and (for me) there is no need in continuously
 doing that. So if you added a new UPNP device to your network, restart
 _pulseaudio-dlna_.
+
+### Firewall Issues ###
+
+If you run this on a machine that has a firewall, that may interfere with the 
+UPNP discovery process unless properly configured.
 
 ### CLI ###
 
